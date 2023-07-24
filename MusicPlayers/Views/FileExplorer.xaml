@@ -4,9 +4,56 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MusicPlayers.Views"
+        xmlns:viewmodel="clr-namespace:MusicPlayers.ViewModels"
         mc:Ignorable="d"
         Title="FileExplorer" Height="300" Width="400">
+    <Window.DataContext>
+        <viewmodel:FileExplorerViewModel/>
+    </Window.DataContext>
     <Grid>
-        <TextBlock Text="Hello World"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <ListBox ItemsSource="{Binding Path=Directories}" Grid.Row="0" Grid.Column="1">
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel Orientation="Horizontal"/>
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <Button>
+                            <Button.Template>
+                                <ControlTemplate>
+                                    <TextBlock Text="{Binding}"/>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <TextBlock Text="AAAAAAAAA"/>
+        <ListBox ItemsSource="{Binding Path=Files}" Grid.Row="1" Grid.Column="1">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <Button>
+                            <Button.Template>
+                                <ControlTemplate>
+                                    <TextBlock Text="{Binding}"/>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
     </Grid>
 </Window>

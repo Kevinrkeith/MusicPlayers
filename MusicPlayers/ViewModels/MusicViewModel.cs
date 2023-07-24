@@ -28,8 +28,7 @@ namespace MusicPlayers.ViewModels
         public MusicViewModel(NavigationStore navi)
         {
             path = Directory.GetCurrentDirectory();
-            path = Directory.GetParent(path).FullName;
-            path = Directory.GetParent(path).FullName;
+            path = Directory.GetParent(Directory.GetParent(path).FullName).FullName;
             string[] fileNames = Directory.GetFiles($"{path}//Music");
             PlayPause = $"{path}\\Images\\PlayButton2.png";
             PlayCommand = new DelegateCommand(playButtonCommand);
