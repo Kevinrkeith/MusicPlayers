@@ -9,7 +9,7 @@
     <Grid>
         <StackPanel>
             <StackPanel Orientation="Horizontal">
-                <Button Content="File" Width="100" Height="30"/>
+                <Button Content="File" Width="100" Height="30" Command="{Binding FileCommand}"/>
                 <TextBox Text="{Binding CurrentSong}" Width="300" IsReadOnly="True"/>
                 <Image Source="C:\Users\Kevin\source\repos\MusicPlayers\MusicPlayers\Images\PreviousButton.png" Width="100" Height="30"/>
                 
