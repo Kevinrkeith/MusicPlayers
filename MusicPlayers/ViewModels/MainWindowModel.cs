@@ -12,6 +12,12 @@ namespace MusicPlayers.ViewModels
     {
         private readonly NavigationStore navigation;
         public BaseViewModel CurrentViewModel => navigation.CurrentViewModel;
+        
+        /// <summary>
+        /// Initializes the Main Window
+        /// Opens whatever the current view model is and matches with the view
+        /// </summary>
+        /// <param name="navigation"></param>
         public MainWindowModel(NavigationStore navigation)
         {
             this.navigation = navigation;
@@ -19,6 +25,9 @@ namespace MusicPlayers.ViewModels
             navigation.CurrentViewModelChanged += OnCurrentViewModelChanged;
         }
 
+        /// <summary>
+        /// If changed then changes view
+        /// </summary>
         private void OnCurrentViewModelChanged()
         {
             OnPropertyChanged(nameof(CurrentViewModel));

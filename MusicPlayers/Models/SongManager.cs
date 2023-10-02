@@ -14,6 +14,7 @@ namespace MusicPlayers.Music
 {
     public static class SongManager
     {
+        #region Variables
         public static MusicViewModel musicViewModel;
         public static int currentSong;
         private static IWavePlayer _player;
@@ -29,6 +30,16 @@ namespace MusicPlayers.Music
         private static ObservableCollection<SongModel> Songs;
         public static string Path;
         public static bool _isPlaying;
+        #endregion
+
+        #region Initialize
+        /// <summary>
+        /// Initilizes the Singleton Class
+        /// Creates a list of the songs from the PDF
+        /// parses them out to include the title and audio format
+        /// Initializes the player
+        /// </summary>
+        /// <param name="path"> Takes in the Current path for the files</param>
         public static void Initialize(string path)
         {
             Songs = new ObservableCollection<SongModel>();
@@ -47,6 +58,13 @@ namespace MusicPlayers.Music
             _audioFileReader = new AudioFileReader(Songs[currentSong].FilePath);
             _player.Init(_audioFileReader);
         }
+        #endregion
+
+        #region Start/Stop
+        /// <summary>
+        /// Sets the current song set from an ID
+        /// </summary>
+        /// <param name="id"></param>
         public static void SetSong(int id)
         {
             if (id < 0) id = SongManager.Songs.Count - 1;
@@ -56,11 +74,17 @@ namespace MusicPlayers.Music
             _player.Init(_audioFileReader);
             _player.Play();
         }
+        /// <summary>
+        /// Stops the song
+        /// </summary>
         public static void StopSong()
         {
             _player.Stop();
             _isPlaying = false;
         }
+        /// <summary>
+        /// Plays the song
+        /// </summary>
         public static void PlaySong()
         {
             if (_isPlaying)
@@ -71,5 +95,6 @@ namespace MusicPlayers.Music
                 _player.Play();
             }
         }
+        #endregion
     }
 }

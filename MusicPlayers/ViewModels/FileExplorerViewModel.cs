@@ -14,10 +14,12 @@ namespace MusicPlayers.ViewModels
 {
     public class FileExplorerViewModel : BaseViewModel
     {
-        public ICommand onClick { get; set; }
+        #region Variables
         private ObservableCollection<string> _directories;
         private ObservableCollection<string> _files;
         private string path { get; set; }
+        
+
         public ObservableCollection<string> Directories
         {
             get { return _directories; }
@@ -28,15 +30,24 @@ namespace MusicPlayers.ViewModels
             get { return _files; }
             set { _files = value; }
         }
+        #endregion
+
+        #region Constructors
+        /// <summary>
+        /// Creates the File Explorer View Model for use
+        /// No Navi command since this uses a different window entirely
+        /// </summary>
         public FileExplorerViewModel() 
         {
             Console.WriteLine("Hello World");
-            onClick = new DelegateCommand(Clicked);
             _directories = new ObservableCollection<string>();
             path = Directory.GetCurrentDirectory();
             CreateDirectory();
             GetFiles();
         }
+        #endregion
+
+        #region Directory and files
         private void GetFiles()
         {
             _files = new ObservableCollection<string>();
@@ -61,9 +72,6 @@ namespace MusicPlayers.ViewModels
                 }
             }
         }
-        private void Clicked()
-        {
-            Console.WriteLine("Hello World");
-        }
+        #endregion
     }
 }
