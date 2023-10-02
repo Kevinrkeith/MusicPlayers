@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:MusicPlayers.Views"
         xmlns:viewmodel="clr-namespace:MusicPlayers.ViewModels"
         mc:Ignorable="d"
-        Title="FileExplorer" Height="300" Width="400">
+        Title="FileExplorer" Height="300" Width="600">
     <Window.DataContext>
         <viewmodel:FileExplorerViewModel/>
     </Window.DataContext>

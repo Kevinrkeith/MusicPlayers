@@ -11,8 +11,13 @@
             <StackPanel Orientation="Horizontal">
                 <Button Content="File" Width="100" Height="30" Command="{Binding FileCommand}"/>
                 <TextBox Text="{Binding CurrentSong}" Width="300" IsReadOnly="True"/>
-                <Image Source="C:\Users\Kevin\source\repos\MusicPlayers\MusicPlayers\Images\PreviousButton.png" Width="100" Height="30"/>
-                
+                <Button Height="30" Width="50" Command="{Binding PreviousCommand}">
+                    <Button.Template>
+                        <ControlTemplate>
+                            <Image Source="{Binding Previous}" Width="100" Height="30"/>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
                 <Button Height="30" Width="50" Command="{Binding PlayCommand}">
                     <Button.Template>
                         <ControlTemplate>
@@ -20,10 +25,38 @@
                         </ControlTemplate>
                     </Button.Template>
                 </Button>
-                <Image Source="C:\Users\Kevin\source\repos\MusicPlayers\MusicPlayers\Images\StopButton.png" Width="100" Height="30"/>
-                <Image Source="C:\Users\Kevin\source\repos\MusicPlayers\MusicPlayers\Images\NextButton.png" Width="100" Height="30"/>
-
+                <Button Height="30" Width="50" Command="{Binding StopCommand}">
+                    <Button.Template>
+                        <ControlTemplate>
+                            <Image Source="{Binding Stop}" Width="100" Height="30"/>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+                <Button Height="30" Width="50" Command="{Binding NextCommand}">
+                    <Button.Template>
+                        <ControlTemplate>
+                            <Image Source="{Binding Next}" Width="100" Height="30"/>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+                <TextBlock Text="Volume"/>
+                <Slider Width="150"/>
             </StackPanel>
+            <ListBox ItemsSource="{Binding Path = Songs}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <Button Height="30" Command="{Binding playCommand}">
+                                <Button.Template>
+                                    <ControlTemplate>
+                                        <TextBlock Text="{Binding Name}"/>
+                                    </ControlTemplate>
+                                </Button.Template>
+                            </Button>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
         </StackPanel>
     </Grid>
 </UserControl>
