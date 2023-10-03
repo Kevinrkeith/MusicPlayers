@@ -42,6 +42,13 @@
                 <TextBlock Text="Volume"/>
                 <Slider Width="150"/>
             </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Width="75" Text="Duration"/>
+                <TextBlock Width="225" Text="Song Name"/>
+                <TextBlock Width="225" Text="Artist"/>
+                <TextBlock Width="225" Text="Album"/>
+                <TextBlock Text="Year"/>
+            </StackPanel>
             <ListBox ItemsSource="{Binding Path = Songs}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
@@ -49,7 +56,13 @@
                             <Button Height="30" Command="{Binding playCommand}">
                                 <Button.Template>
                                     <ControlTemplate>
-                                        <TextBlock Text="{Binding Name}"/>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Width="75" Text="{Binding Duration}"/>
+                                            <TextBlock Width ="225" Text="{Binding Name}"/>
+                                            <TextBlock Width ="225" Text="{Binding Artist}"/>
+                                            <TextBlock Width ="225" Text="{Binding Album}"/>
+                                            <TextBlock Text="{Binding Year}"/>
+                                        </StackPanel>
                                     </ControlTemplate>
                                 </Button.Template>
                             </Button>

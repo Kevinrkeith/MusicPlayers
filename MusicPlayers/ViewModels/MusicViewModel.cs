@@ -23,6 +23,7 @@ namespace MusicPlayers.ViewModels
         public string Next { get; set; }
         public string Previous { get; set; }
         public string Stop { get; set; }
+        public string CurrentSong { get; set; }
         #endregion
 
         #region ICommand 
@@ -43,9 +44,6 @@ namespace MusicPlayers.ViewModels
                 SongManager.pubSongs = value;
             }
         }
-        public string CurrentSong { get; set; }
-
-        Timer timer;
 
         /// <summary>
         /// Sets the Navigation Store and View Model for this so this view can be changed to

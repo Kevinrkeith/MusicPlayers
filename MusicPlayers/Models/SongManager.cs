@@ -49,10 +49,7 @@ namespace MusicPlayers.Music
             string[] fileNames = Directory.GetFiles($"{path}\\Music");
             for (int i = 0; i < fileNames.Length; i++)
             {
-                SongModel song = new SongModel();
-                song.Id = i;
-                song.FilePath = fileNames[i];
-                song.Name = fileNames[i].Replace(path + "\\Music\\", string.Empty);
+                SongModel song = new SongModel(i, fileNames[i]);
                 Songs.Add(song);
             }
             _audioFileReader = new AudioFileReader(Songs[currentSong].FilePath);
