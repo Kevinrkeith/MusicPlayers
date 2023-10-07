@@ -24,6 +24,23 @@ namespace MusicPlayers.ViewModels
         public string Previous { get; set; }
         public string Stop { get; set; }
         public string CurrentSong { get; set; }
+        public string TrackBar
+        {
+            get
+            {
+                return SongManager.pubSongs[SongManager.currentSong].Duration;
+            }
+        }
+
+        public float VolumeLevel
+        {
+            get { return SongManager.Volume; }
+            set
+            {
+                SongManager.Volume = value;
+                SongManager.ChangeAudio();
+            }
+        }
         #endregion
 
         #region ICommand 
@@ -34,12 +51,13 @@ namespace MusicPlayers.ViewModels
         public ICommand PreviousCommand { get; set; }
         #endregion
 
-        public ObservableCollection<SongModel> Songs {
+        public ObservableCollection<SongModel> Songs
+        {
             get
             {
                 return SongManager.pubSongs;
             }
-            set 
+            set
             {
                 SongManager.pubSongs = value;
             }
@@ -64,6 +82,7 @@ namespace MusicPlayers.ViewModels
             FileCommand = new DelegateCommand(FileButton);
             StopCommand = new DelegateCommand(StopSong);
             SongManager.musicViewModel = this;
+            CurrentSong = SongManager.pubSongs[SongManager.currentSong].Name;
         }
         /// <summary>
         /// Opens up the file explorer
@@ -92,6 +111,8 @@ namespace MusicPlayers.ViewModels
         {
             int val = (SongManager.currentSong + 1) % SongManager.pubSongs.Count;
             SongManager.SetSong(val);
+            CurrentSong = SongManager.pubSongs[val].Name;
+            OnPropertyChanged(nameof(CurrentSong));
         }
 
         /// <summary>
@@ -99,9 +120,11 @@ namespace MusicPlayers.ViewModels
         /// </summary>
         private void PreviousButtonCommand()
         {
-            
+
             int val = (SongManager.currentSong - 1) % SongManager.pubSongs.Count;
             SongManager.SetSong(val);
+            CurrentSong = SongManager.pubSongs[val].Name;
+            OnPropertyChanged(nameof(CurrentSong));
         }
 
         /// <summary>
@@ -109,11 +132,12 @@ namespace MusicPlayers.ViewModels
         /// Button changes to reflect the song playing
         /// </summary>
         private void playButtonCommand()
-        {   
+        {
             if (SongManager._isPlaying)
             {
                 PlayPause = $"{SongManager.Path}\\Images\\PlayButton2.png";
-            } else
+            }
+            else
             {
                 PlayPause = $"{SongManager.Path}\\Images\\PauseButton1.png";
             }

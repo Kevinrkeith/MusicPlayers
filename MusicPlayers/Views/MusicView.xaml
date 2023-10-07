@@ -9,8 +9,11 @@
     <Grid>
         <StackPanel>
             <StackPanel Orientation="Horizontal">
-                <Button Content="File" Width="100" Height="30" Command="{Binding FileCommand}"/>
-                <TextBox Text="{Binding CurrentSong}" Width="300" IsReadOnly="True"/>
+                <StackPanel>
+                    <TextBox Text="{Binding CurrentSong}" Width="300" IsReadOnly="True"/>
+                    <Slider/>
+                    <TextBlock Text="Hello:Hello/Hello:Hello"/>
+                </StackPanel>
                 <Button Height="30" Width="50" Command="{Binding PreviousCommand}">
                     <Button.Template>
                         <ControlTemplate>
@@ -40,7 +43,10 @@
                     </Button.Template>
                 </Button>
                 <TextBlock Text="Volume"/>
-                <Slider Width="150"/>
+                <Slider Width="125"
+                        Value="{Binding VolumeLevel, Mode=TwoWay}"
+                        Minimum="0"
+                        Maximum="1"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <TextBlock Width="75" Text="Duration"/>

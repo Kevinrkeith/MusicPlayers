@@ -8,6 +8,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace MusicPlayers.Music
@@ -19,6 +20,7 @@ namespace MusicPlayers.Music
         public static int currentSong;
         private static IWavePlayer _player;
         private static AudioFileReader _audioFileReader;
+        public static string time;
         public static ObservableCollection<SongModel> pubSongs
         {
             get
@@ -30,6 +32,7 @@ namespace MusicPlayers.Music
         private static ObservableCollection<SongModel> Songs;
         public static string Path;
         public static bool _isPlaying;
+        public static float Volume;
         #endregion
 
         #region Initialize
@@ -54,6 +57,9 @@ namespace MusicPlayers.Music
             }
             _audioFileReader = new AudioFileReader(Songs[currentSong].FilePath);
             _player.Init(_audioFileReader);
+            Volume = 0.5f;
+            _player.Volume = Volume;
+            time = $":{Songs[currentSong].Duration}";
         }
         #endregion
 
@@ -93,5 +99,13 @@ namespace MusicPlayers.Music
             }
         }
         #endregion
+
+        /// <summary>
+        /// Changes the Volume for the audio on the song
+        /// </summary>
+        public static void ChangeAudio()
+        {
+            _player.Volume = Volume;
+        }
     }
 }
